@@ -1,12 +1,39 @@
 import React, { Component } from  'react'; 
+import db from '../firebase';
+import {connect} from 'react-redux';
+import {updateChat} from '../action'
 class Chat extends Component {
+  componentDidMount(){
+    db.ref('/chat-long').on('value',(snapshot)=>{
+      this.props.updateChat(snapshot.val());
+    });
+  }
+
   render(){
+    console.log('Chat log:', this.props.chatLog);
+    const {chatLog} = this.props;
+    const chatElements = Object.keys(chatLog).map((key, index)=>{
+      
+      console.log(chatLog[key]);
+      
+      const { name, message } = chatLog[key];
+      return <li className = 'collection-item' key={key}> <b> {name}: </b> {message} </li>
+    })
     return (
       <div>
         <h1 className="center">Chat Room </h1>
+        <ul className = 'collection'>
+          {chatElements}
+        </ul>
       </div>
     )
   }
 }
 
-export default Chat;
+function mapStateToProps(state){
+  return {
+    chatLog: state.chat.log
+  }
+}
+
+export default connect(mapStateToProps, {updateChat}) (Chat);
