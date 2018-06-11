@@ -3,5 +3,7 @@ export default{
   UPDATE_CHAT_LOG: 'update_chat_log',
   UPDATE_INPUT: 'update_input',
   //sending the message to firebase 
-  SEND_MASSAGE: "send_message"
+  SEND_MASSAGE: "send_message",
+  //clear the input 
+  CLEAR_INPUT: "clear_input_message"
 }

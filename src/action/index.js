@@ -27,3 +27,10 @@ export function sendMessageToDb(message){
     type: types.SEND_MESSAGE
   }
 }
+
+export function  clearInput(name){
+  return{
+    type: types.ClEAR_INPUT,
+    payload: name
+  }
+}
