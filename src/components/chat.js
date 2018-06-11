@@ -1,7 +1,9 @@
 import React, { Component } from  'react'; 
 import db from '../firebase';
 import {connect} from 'react-redux';
-import {updateChat} from '../action'
+import {updateChat} from '../action';
+import MessageInput from './message_input'; 
+
 class Chat extends Component {
   componentDidMount(){
     db.ref('/chat-long').on('value',(snapshot)=>{
@@ -25,6 +27,7 @@ class Chat extends Component {
         <ul className = 'collection'>
           {chatElements}
         </ul>
+        <MessageInput/> 
       </div>
     )
   }
